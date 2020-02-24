@@ -1,0 +1,18 @@
+variables:
+
+stages:
+  - build
+  - sonar
+
+build:
+  stage: build
+  script: "mvn clean build"
+
+
+sonarqube-check:
+  stage: sonar
+  script: "mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -D sonar.projectKey=restapi"
+
+  # sonar.login=the-generated-token"
+  allow_failure: true
+
